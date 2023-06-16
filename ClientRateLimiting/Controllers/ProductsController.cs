@@ -12,7 +12,7 @@ namespace RateLimitExample.Controllers
     public class ProductsController : ControllerBase
     {
         [HttpGet]
-        public IActionResult GetProducts()
+        public IActionResult GetProducts([FromHeader] string client_id)
         {
             return Ok(new string[] { "Mouse", "Keyboard", "Pen" });
         }

@@ -14,9 +14,9 @@ using System.Threading.Tasks;
 
 namespace ClientRateLimiting
 {
-    public class Startup
+    public class Startup1
     {
-        public Startup(IConfiguration configuration)
+        public Startup1(IConfiguration configuration)
         {
             Configuration = configuration;
         }
@@ -34,7 +34,9 @@ namespace ClientRateLimiting
             services.Configure<ClientRateLimitPolicies>(Configuration.GetSection("ClientRateLimitPolicies"));
             services.AddSingleton<IClientPolicyStore, MemoryCacheClientPolicyStore>();
             services.AddSingleton<IRateLimitCounterStore, MemoryCacheRateLimitCounterStore>();
-            services.AddHttpContextAccessor();
+      
+            services.AddHttpContextAccessor(); // IHttpContextAccessor ile HttpContext baðlantýsýný service class'ýmýzda eriþmek için eklendik.
+
             services.AddSingleton<IRateLimitConfiguration, RateLimitConfiguration>();
             // son verisyon için ekledik
             // en güncel clientrate paketi için bu ayarý eklememiz lazým.
