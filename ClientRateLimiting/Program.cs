@@ -20,7 +20,7 @@ builder.Services.AddSwaggerGen();
 // IConfiguration interfacelerinden gelenler builder.Configuration
 
 builder.Services.AddOptions();
-builder.Services.AddMemoryCache();
+builder.Services.AddMemoryCache(); // InMemory Cache Service
 builder.Services.Configure<ClientRateLimitOptions>(builder.Configuration.GetSection("ClientRateLimiting")); // deðiþti.
 builder.Services.Configure<ClientRateLimitPolicies>(builder.Configuration.GetSection("ClientRateLimitPolicies"));
 builder.Services.AddSingleton<IClientPolicyStore, MemoryCacheClientPolicyStore>();
@@ -50,7 +50,10 @@ app.UseHttpsRedirection();
 
 //app.UseRouting(); // kaldýrýlacak
 
+app.UseStaticFiles();
+
 app.UseAuthorization();
+
 
 app.MapControllers(); // eklenecek
 
